@@ -420,6 +420,8 @@ def run_qc_check(excel_data, pdf_data, manual_jumpers=None, roof_name_override=N
         detected_type = "L-Foot"
     elif shingle_dwg > 0 or "SHINGLE" in att_name_dwg.upper():
         detected_type = "Shingle Plate"
+    elif "HANGER" in att_name_dwg.upper():
+        detected_type = "Hanger Bolt"
     elif th_dwg > 0 or "TILE" in att_name_dwg.upper():
         detected_type = "Tile Hook"
     elif att_name_dwg:
@@ -452,7 +454,7 @@ def run_qc_check(excel_data, pdf_data, manual_jumpers=None, roof_name_override=N
 
     if table_overrides:
         for k_ov, v_ov in table_overrides.items():
-            if str(v_ov).strip().isdigit() and any(x in k_ov.upper() for x in ["TILE", "HOOK", "3", "ROOF", "U-RAIL", "CLIPLOCK", "L-FOOT", "BALLAST", "SHINGLE"]):
+            if str(v_ov).strip().isdigit() and any(x in k_ov.upper() for x in ["TILE", "HOOK", "3", "ROOF", "U-RAIL", "CLIPLOCK", "L-FOOT", "BALLAST", "SHINGLE", "HANGER"]):
                 att_dwg = int(v_ov)
 
     # Evaluate SOP engineering calculation
